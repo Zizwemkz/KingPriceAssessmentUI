@@ -1,0 +1,18 @@
+.employee-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  
+  .employee-form input {
+    margin-bottom: 16px;
+    padding: 8px;
+    font-size: 1rem;
+  }
+  
+  .employee-form button {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 8px 16px;
+  }
