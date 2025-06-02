@@ -3,28 +3,6 @@
 
 A simple React-based frontend to **Create, Read, Update, and Delete (CRUD)** user records. This project is designed to be API-ready and uses in-memory state for now, making it easy to integrate with any backend.
 
-## 🔧 Features
-
-- Add new users
-- Edit user details
-- Delete users
-- Display all users in a list
-- Clean, simple form and layout
-- Built with Create React App
-
----
-
-## 📋 User Fields
-
-Each user contains:
-- `Employee Number`
-- `Name`
-- `Surname`
-- `Age`
-- `Position`
-
----
-
 ## 🛠 Tech Stack
 
 - [React](https://reactjs.org/)
@@ -34,11 +12,11 @@ Each user contains:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine.
 
-### ✅ Prerequisites
+### Prerequisites
 
 Make sure you have **Node.js** and **npm** installed.  
 Download from [https://nodejs.org](https://nodejs.org)
@@ -50,19 +28,19 @@ node -v
 npm -v
 ```
 
-### 🔄 Clone the repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/Zizwemkz/KingPriceAssessmentUI.git
 ```
 
-### 📦 Install dependencies
+### Install dependencies
 
 ```bash
 npm install
 ```
 
-### ▶️ Run the development server
+### Run the development server
 
 ```bash
 npm start
@@ -71,13 +49,16 @@ npm start
 This will start the app at [http://localhost:3000]
 
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```
 user-crud-app/
 ├── public/
 │   └── index.html
 ├── src/
+|   |__ API
+|   |__ Components
+|   |__ Pages
 │   ├── App.js
 │   ├── App.css
 │   ├── UserList.js
@@ -86,10 +67,4 @@ user-crud-app/
 ├── package.json
 ├── README.md
 ```
-
----
-
-## 📸 Screenshot
-
-![image](https://github.com/user-attachments/assets/6994370f-daf1-4fbc-a26c-d4adcdf886a4)
 
