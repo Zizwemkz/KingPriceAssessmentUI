@@ -1,7 +1,11 @@
-
-# 👥 React User Manager
-
-A simple React-based frontend to **Create, Read, Update, and Delete (CRUD)** user records. This project is designed to be API-ready and uses in-memory state for now, making it easy to integrate with any backend.
+<div align="center">
+  <h1>
+   # 👥 Employee Management UI
+  </h1>
+  <p>   
+   The Employee Management React-based frontend to **Create, Read, Update, and Delete (CRUD)** for managing employees, roles, and departments within an organization. This project serves as a robust front-End for HR systems, admin dashboards, or any business scenario where employee data needs to be managed and queried efficiently.
+  </p>
+</div>
 
 ## 🛠 Tech Stack
 
@@ -19,7 +23,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 Make sure you have **Node.js** and **npm** installed.  
-Download from [https://nodejs.org](https://nodejs.org)
+Download from [https://nodejs.org]
 
 Check if they're installed:
 
@@ -41,7 +45,7 @@ npm install
 ```
 
 ### Run the development server
-
+Before running the UI , please make sure that the KingPriceAssessmentAPI is up and running so the two can communicate.
 ```bash
 npm start
 ```
