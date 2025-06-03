@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderNav from "./components/HeaderNav";
 import EmployeePage from "./components/EmployeeList";
 import RolesPage from "./pages/RolesPage";
+import EmployeeForm from "./pages/EmployeeForm"; 
+import EmployeeDetails from "./components/EmployeeDetails"; 
 import DepartmentPage from "./pages/DepartmentPage";
 import SearchPage from "./pages/SearchPage";
 import EmployeeAllocationPage from "./pages/EmployeeAllocationPage";
@@ -20,6 +22,8 @@ function App() {
           <Route path="/EmployeeList" element={<EmployeePage />} />
           <Route path="/departments" element={<DepartmentPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/add" element={<EmployeeForm />} />
+          <Route path="/view/:id" element={<EmployeeDetails />} />
           <Route path="/employee-allocation" element={<EmployeeAllocationPage />} />
           <Route path="/employees-by-department" element={<DepartmentEmployeePage />} />
         </Routes>

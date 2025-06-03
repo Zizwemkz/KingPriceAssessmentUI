@@ -59,8 +59,8 @@ body {
 .app-root {
   max-width: 1200px;
   margin: 0 auto;
-  /* Add top margin equal to header height for proper spacing */
-  margin-top: 110px;
+  /* Increase top margin for more space below the header */
+  margin-top: 140px; /* was 110px */
   padding: 0 16px 32px 16px;
 }
 
@@ -76,7 +76,7 @@ body {
   padding: 40px;
   max-width: 700px;
   width: 90%;
-  margin: 60px auto 0 auto; /* Increased top margin for spacing */
+  margin: 100px auto 0 auto; /* was 80px, now 100px for more space */
   text-align: center;
 }
 
@@ -195,7 +195,7 @@ tr:not(:last-child) {
   .container {
     padding: 25px 6px;
     max-width: 99vw;
-    margin-top: 80px;
+    margin-top: 100px; /* was 80px */
   }
 
   table, thead, tbody, th, td, tr {
@@ -205,6 +205,6 @@ tr:not(:last-child) {
     font-size: 22px;
   }
   .app-root {
-    margin-top: 90px;
+    margin-top: 120px; /* was 90px */
   }
 }

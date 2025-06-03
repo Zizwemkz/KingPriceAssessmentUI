@@ -59,7 +59,6 @@ function EmployeeList() {
               <td>
                 <div className="action-buttons">
                 <Link to={`/view/${emp.id}`}><button>View</button></Link>
-                <Link to={`/edit/${emp.id}`}><button>Edit</button></Link>
                 <button onClick={() => handleDelete(emp.id)}>Delete</button>
                 </div>
               </td>

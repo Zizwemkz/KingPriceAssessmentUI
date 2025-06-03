@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./EmployeeForm.css";
+import "../App.css";
 
 const API_URL = "https://localhost:44317/api/Employee";
 
@@ -11,7 +11,6 @@ function EmployeeForm() {
     EmployeeNumber: "",
     Name: "",
     LastName: "",
-    PhoneNumber: "",
     Age: 0,
     Position: ""
   });
@@ -37,13 +36,12 @@ function EmployeeForm() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Add Employee</h2>
       <form className="employee-form" onSubmit={handleSubmit}>
         <input required name="EmployeeNumber" placeholder="Employee No" value={form.EmployeeNumber} onChange={handleChange} />
         <input required name="Name" placeholder="Name" value={form.Name} onChange={handleChange} />
         <input required name="LastName" placeholder="LastName" value={form.LastName} onChange={handleChange} />
-        <input required name="PhoneNumber" placeholder="Phone Number" value={form.PhoneNumber} onChange={handleChange} />
         <input required type="number" name="Age" placeholder="Age" value={form.Age} onChange={handleChange} />
         <input required name="Position" placeholder="Position" value={form.Position} onChange={handleChange} />
         <button type="submit">Save</button>
