@@ -41,6 +41,22 @@ function EmployeeAllocationPage() {
   const handleSubmit = async e => {
     e.preventDefault();
     setError("");
+
+    // --- Duplicate check for ADD ---
+    if (!editing) {
+      const duplicate = allocations.some(
+        a =>
+          String(a.employeeId) === String(form.employeeId) &&
+          String(a.roleId) === String(form.roleId) &&
+          String(a.departmentId) === String(form.departmentId)
+      );
+      if (duplicate) {
+        setError("This allocation already exists for the specified employee, role, and department.");
+        return;
+      }
+    }
+    // --- End duplicate check ---
+
     try {
       if (editing) {
         await axios.put(`${ALLOC_API}/${form.id}`, form);
@@ -51,7 +67,7 @@ function EmployeeAllocationPage() {
       setEditing(false);
       fetchAll();
     } catch (err) {
-      setError("Failed to save allocation.");
+      setError(err?.response?.data?.message || "Failed to save allocation.");
     }
   };
 
@@ -79,7 +95,6 @@ function EmployeeAllocationPage() {
   const getEmployeeName = (id) => {
     const emp = employees.find(e => e.employeeId === id || e.id === id);
     if (!emp) return id;
-    // Use Name + Lastname (DTO) or fallback to name/surname
     return (emp.name || emp.Name || "") + " " + (emp.lastname || emp.Lastname || emp.surname || "");
   };
 
@@ -103,13 +118,20 @@ function EmployeeAllocationPage() {
     <div className="container">
       <h2>Employee Allocation</h2>
       <form onSubmit={handleSubmit} className="form-inline">
-        <select name="employeeId" value={form.employeeId} onChange={handleChange} required 
-        style={{
-          padding: "10px",
-          borderRadius: "6px",
-          border: "1px solid #ccc",
-          minWidth: "250px"
-        }}>
+        {/* Employee dropdown - disabled when editing */}
+        <select
+          name="employeeId"
+          value={form.employeeId}
+          onChange={handleChange}
+          required
+          disabled={editing}
+          style={{
+            padding: "10px",
+            borderRadius: "6px",
+            border: "1px solid #ccc",
+            minWidth: "250px",
+            background: editing ? "#eee" : "white"
+          }}>
           <option value="">Select Employee</option>
           {employees.map(emp =>
             <option key={emp.employeeId || emp.id} value={emp.employeeId || emp.id}>
@@ -117,13 +139,18 @@ function EmployeeAllocationPage() {
             </option>
           )}
         </select>
-        <select name="roleId" value={form.roleId} onChange={handleChange} required
-        style={{
-          padding: "10px",
-          borderRadius: "6px",
-          border: "1px solid #ccc",
-          minWidth: "250px"
-        }}>
+        {/* Role dropdown - always enabled */}
+        <select
+          name="roleId"
+          value={form.roleId}
+          onChange={handleChange}
+          required
+          style={{
+            padding: "10px",
+            borderRadius: "6px",
+            border: "1px solid #ccc",
+            minWidth: "250px"
+          }}>
           <option value="">Select Role</option>
           {roles.map(role =>
             <option key={role.id || role.roleId} value={role.id || role.roleId}>
@@ -131,13 +158,20 @@ function EmployeeAllocationPage() {
             </option>
           )}
         </select>
-        <select name="departmentId" value={form.departmentId} onChange={handleChange} required
-        style={{
-          padding: "10px",
-          borderRadius: "6px",
-          border: "1px solid #ccc",
-          minWidth: "250px"
-        }}>
+        {/* Department dropdown - disabled when editing */}
+        <select
+          name="departmentId"
+          value={form.departmentId}
+          onChange={handleChange}
+          required
+          disabled={editing}
+          style={{
+            padding: "10px",
+            borderRadius: "6px",
+            border: "1px solid #ccc",
+            minWidth: "250px",
+            background: editing ? "#eee" : "white"
+          }}>
           <option value="">Select Department</option>
           {departments.map(dept =>
             <option key={dept.id || dept.departmentId} value={dept.id || dept.departmentId}>
@@ -153,29 +187,29 @@ function EmployeeAllocationPage() {
       </form>
       {error && <div style={{ color: "red", margin: "8px 0" }}>{error}</div>}
       <table className="roles-table">
-      <thead>
-        <tr>
+        <thead>
+          <tr>
             <th>Employee</th>
             <th>Role</th>
             <th>Department</th>
             <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-      {allocations.map(alloc => (
-                <tr key={alloc.id}>
-                <td>{getEmployeeName(alloc.employeeId)}</td>
-                <td>{getRoleName(alloc.roleId)}</td>
-                <td>{getDeptName(alloc.departmentId)}</td>
-                <td>
+          </tr>
+        </thead>
+        <tbody>
+          {allocations.map(alloc => (
+            <tr key={alloc.id}>
+              <td>{getEmployeeName(alloc.employeeId)}</td>
+              <td>{getRoleName(alloc.roleId)}</td>
+              <td>{getDeptName(alloc.departmentId)}</td>
+              <td>
                 <div className="action-buttons">
-                <button onClick={() => handleEdit(alloc)} style={{ marginLeft: 8 }}>Edit</button>
-                <button onClick={() => handleDelete(alloc.id)} style={{ marginLeft: 4 }}>Delete</button>
+                  <button onClick={() => handleEdit(alloc)} style={{ marginLeft: 8 }}>Edit</button>
+                  <button onClick={() => handleDelete(alloc.id)} style={{ marginLeft: 4 }}>Delete</button>
                 </div>
-                </td>
-                </tr>
-              ))}
-      </tbody>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
